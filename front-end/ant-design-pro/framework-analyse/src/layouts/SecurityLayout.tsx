@@ -19,7 +19,6 @@ class SecurityLayout extends React.Component<SecurityLayoutProps, SecurityLayout
   state: SecurityLayoutState = {
     isReady: false,
   };
-
   componentDidMount() {
     this.setState({
       isReady: true,
@@ -43,7 +42,7 @@ class SecurityLayout extends React.Component<SecurityLayoutProps, SecurityLayout
     });
 
     if ((!isLogin && loading) || !isReady) {
-      return <PageLoading />;
+      return <PageLoading tip="User Login..." />;
     }
     if (!isLogin && window.location.pathname !== '/user/login') {
       return <Redirect to={`/user/login?${queryString}`} />;

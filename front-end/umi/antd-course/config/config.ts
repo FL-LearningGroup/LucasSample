@@ -7,4 +7,10 @@ export default defineConfig({
     hmr: true,
   },
   routes,
+  proxy: {
+    '/api': {
+      target: 'https://lucasfunction.azurewebsites.net',
+      changeOrigin: true,
+    }
+  },
 });

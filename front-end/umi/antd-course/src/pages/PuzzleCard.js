@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Button } from 'antd';
 import { connect } from 'dva';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
 const namespace = 'puzzlecards';
 
@@ -8,39 +9,44 @@ const mapStateToProps = (state) => ({
   cardList: state.puzzlecards
 });
 
-
-const PuzzleCard = (props) => {
-  const { cardList } = props
-  // addNewCard = () => {
-  //   this.setState(prevState => {
-  //     const prevCardList = prevState.cardList;
-  //     this.counter += 1;
-  //     const card = {
-  //       id: this.counter,
-  //       setup: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
-  //       punchline: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  //     };
-  //     return {
-  //       cardList: prevCardList.concat(card),
-  //     };
-  //   });
-  // }
-  return (
-    <div>
-      {
-          cardList
-          .map(card => {
-          return (
-            <Card key={card.id}>
-              <div>Q: {card.setup}</div>
-              <div>
-                <strong>A: {card.punchline}</strong>
-              </div>
-            </Card>
-          );
-        })
-      }
-    </div>
-  )
+const mapDispatchToProps = {
+  initCard:() => ({type: "puzzlecards/initCard"}),
+  addCard:() => ({type: "puzzlecards/addCard"}),
+  removeCard:(id) => ({type: "puzzlecards/removeCard", payload: id}),
+  updateCard:(payload) => ({type: "puzzlecards/updateCard"})
 }
-export default connect(mapStateToProps)(PuzzleCard);
+
+class PuzzleCard extends Component {
+
+  componentDidMount() {
+    console.log("Trigger init card method.");
+    this.props.initCard();
+  }
+  render() {
+    return (
+      <div>
+        {
+            this.props.cardList.map(card => {
+            return (
+              <Card key={card.id}     
+              actions={[
+                <EditOutlined onClick={() => this.props.updateCard()} key="edit" />,
+                <DeleteOutlined onClick={() =>{this.props.removeCard(card.id)}} key="delete"/>,
+              ]}
+              hoverable={true}
+              style={{marginBottom: '10px'}}
+              >
+                <div>Q: {card.setup}</div>
+                <div>
+                  <strong>A: {card.punchline}</strong>
+                </div>
+              </Card>
+            );
+          })
+        }
+        <Button onClick={() => this.props.addCard() } size='large'>Add Card</Button>
+      </div>
+    )
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(PuzzleCard);

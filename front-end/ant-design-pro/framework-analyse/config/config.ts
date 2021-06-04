@@ -43,4 +43,6 @@ export default defineConfig({
   // 快速刷新功能 https://umijs.org/config#fastrefresh
   fastRefresh: {},
   esbuild: {},
+  //webpack5: {},
 });
+
