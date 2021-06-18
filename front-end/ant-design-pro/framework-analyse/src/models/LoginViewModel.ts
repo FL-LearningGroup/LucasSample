@@ -7,25 +7,22 @@ import { setAuthority } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
 import { message } from 'antd';
 
-export type StateType = {
-  status?: 'ok' | 'error';
-  type?: string;
-  currentAuthority?: 'user' | 'guest' | 'admin';
-};
+import { LoginStateType } from '@/modeltypes/Login';
 
-export type LoginModelType = {
+
+export type LoginViewModelType = {
   namespace: string;
-  state: StateType;
+  state: LoginStateType;
   effects: {
     login: Effect;
     logout: Effect;
   };
   reducers: {
-    changeLoginStatus: Reducer<StateType>;
+    changeLoginStatus: Reducer<LoginStateType>;
   };
 };
 
-const Model: LoginModelType = {
+const LoginViewMode: LoginViewModelType = {
   namespace: 'login',
 
   state: {
@@ -90,4 +87,4 @@ const Model: LoginModelType = {
   },
 };
 
-export default Model;
+export default LoginViewMode;

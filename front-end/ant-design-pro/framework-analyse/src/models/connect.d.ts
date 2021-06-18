@@ -1,10 +1,11 @@
 import type { MenuDataItem, Settings as ProSettings } from '@ant-design/pro-layout';
-import { GlobalModelState } from './global';
-import { UserModelState } from './user';
-import type { StateType } from './login';
+import { GlobalModelState } from './GlobalViewModel';
+import { UserModelState } from './UserViewModel';
+import type { LoginStateType } from '@/modeltypes/Login';
 
 export { GlobalModelState, UserModelState };
 
+// Declare type for dva-loading plugin.
 export type Loading = {
   global: boolean;
   effects: Record<string, boolean | undefined>;
@@ -22,7 +23,7 @@ export type ConnectState = {
   loading: Loading;
   settings: ProSettings;
   user: UserModelState;
-  login: StateType;
+  login: LoginStateType;
 };
 
 export type Route = {

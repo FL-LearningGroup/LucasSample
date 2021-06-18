@@ -166,7 +166,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
         return menuData || [];
       }}
       waterMarkProps={{
-        content: 'Ant Design Pro',
+        content: 'School Management System',
         fontColor: 'rgba(24,144,255,0.15)',
       }}
     >

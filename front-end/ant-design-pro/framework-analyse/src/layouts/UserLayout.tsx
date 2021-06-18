@@ -50,20 +50,19 @@ const UserLayout: React.FC<UserLayoutProps> = (props) => {
               <Link to="/">
                 <img alt="logo" className={styles.logo} src={logo}/>
                 <span className={styles.title}>
-                  <FormattedMessage id="pages.layouts.userLayout.title" defaultMessage="Person System" />
+                  <FormattedMessage id="pages.layouts.userLayout.title" defaultMessage="School Management System" />
                 </span>
               </Link>
             </div>
             <div className={styles.desc}>
               <FormattedMessage
                 id="pages.layouts.userLayout.title.desc"
-                defaultMessage="Ant Design. The most influential Web design specification in Xihu District."
+                defaultMessage="A platfor for managing system resources."
               />
             </div>
           </div>
           {children}
         </div>
-        <DefaultFooter />
       </div>
     </HelmetProvider>
   );

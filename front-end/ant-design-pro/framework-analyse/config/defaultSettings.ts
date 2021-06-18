@@ -13,7 +13,7 @@ const proSettings: DefaultSettings = {
   fixedHeader: false,
   fixSiderbar: true,
   colorWeak: false,
-  title: 'Ant Design Pro',
+  title: 'School Management System',
   pwa: false,
   iconfontUrl: '',
 };
