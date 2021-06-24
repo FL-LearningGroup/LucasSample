@@ -8,7 +8,7 @@ import { Alert, message, Tabs } from 'antd';
 import React, { useState } from 'react';
 import ProForm, { ProFormCaptcha, ProFormCheckbox, ProFormText } from '@ant-design/pro-form';
 import { useIntl, connect, FormattedMessage } from 'umi';
-import { getFakeCaptcha } from '@/services/login';
+import { getFakeCaptcha } from '@/services/api.login';
 import type { Dispatch } from 'umi';
 import type { LoginStateType } from '@/modeltypes/Login';
 import type { LoginParamsType } from '@/modeltypes/Login';
@@ -41,7 +41,6 @@ const Login: React.FC<LoginProps> = (props) => {
   const { status, type: loginType } = userLogin;
   const [type, setType] = useState<string>('account');
   const intl = useIntl();
-  console.log(JSON.stringify(userLogin));
   
   const handleSubmit = (values: LoginParamsType) => {
     const { dispatch } = props;

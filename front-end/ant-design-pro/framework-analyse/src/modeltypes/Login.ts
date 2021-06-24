@@ -1,8 +1,6 @@
 export type LoginParamsType = {
   userName: string;
   password: string;
-  mobile: string;
-  captcha: string;
 };
 
 export type LoginStateType = {
@@ -10,11 +8,3 @@ export type LoginStateType = {
   type?: string;
   currentAuthority?: 'user' | 'guest' | 'admin';
 };
-
-export interface ILoginOperation {
-  SuccessLogin: Function;
-}
-
-// export class Login implements ILoginOperation {
-
-// }

@@ -2,7 +2,7 @@ import { stringify } from 'querystring';
 import type { Reducer, Effect } from 'umi';
 import { history } from 'umi';
 
-import { fakeAccountLogin } from '@/services/login';
+import { fakeAccountLogin } from '@/services/api.login';
 import { setAuthority } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
 import { message } from 'antd';
@@ -31,15 +31,22 @@ const LoginViewMode: LoginViewModelType = {
 
   effects: {
     *login({ payload }, { call, put }) {
+      console.log(JSON.stringify(payload));
       const response = yield call(fakeAccountLogin, payload);
+      //console.log(JSON.stringify(response));
+      
       yield put({
         type: 'changeLoginStatus',
         payload: response,
       });
+      
       // Login successfully
       if (response.status === 'ok') {
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();
+        console.log("<LoginVM> urlParams: " + urlParams);
+        console.log("<LoginVM> params: " + JSON.stringify(params));
+
         message.success('🎉 🎉 🎉  登录成功！');
         let { redirect } = params as { redirect: string };
         if (redirect) {
